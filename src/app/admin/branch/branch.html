@@ -1,0 +1,47 @@
+<div class="branch-container">
+  <h2>Branch Management</h2>
+
+  <!-- FORM -->
+  <div class="form-box">
+    <input
+      type="text"
+      placeholder="Branch Name"
+      [(ngModel)]="branch.branchName"
+    />
+
+    <select [(ngModel)]="branch.status">
+      <option [ngValue]="true">Active</option>
+      <option [ngValue]="false">Inactive</option>
+    </select>
+
+    <button (click)="saveBranch()">
+      {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+
+    <button *ngIf="isEditMode" (click)="resetForm()">Cancel</button>
+  </div>
+
+  <!-- TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Branch Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let b of branches; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ b.branchName }}</td>
+        <td>{{ getStatusText(b.status) }}</td>
+        <td>
+          <button (click)="editBranch(b)">Edit</button>
+          <button (click)="deleteBranch(b.branchId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

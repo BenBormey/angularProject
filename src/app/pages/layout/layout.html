@@ -1,0 +1,84 @@
+<div class="layout-wrapper">
+  <div class="top-bar">
+    <div class="container">
+      <div class="left">
+        <span>📍 Phnom Penh</span>
+        <span>📞 +855 12 345 678</span>
+      </div>
+      <div class="right">
+        <span>English</span>
+        <span>USD</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+     
+  <button class="logo" routerLink="/home" style="border: none;background: none;cursor: pointer;"> 
+          e-shop.</button>
+      <div class="search-box">
+        <input type="text" placeholder="Search products..." />
+      </div>
+
+      <div class="nav-actions">
+        <span>❤️</span>
+        <span>🛒</span>
+        <span>👤</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="category-bar">
+    <div class="container">
+      <a routerLink="/home">🏠 Home</a>
+      <a routerLink="/products">🛍 Products</a>
+      <a routerLink="/cart">🛒 Cart</a>
+      <a routerLink="/profile">👤 Profile</a>
+      <a (click)="logout()" class="logout">🚪 Logout</a>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+           <button>
+              <a routerLink="/home">e-shop.</a></button>
+    
+        <p>Your trusted online shopping platform.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a routerLink="/home">Home</a>
+        <a routerLink="/products">Products</a>
+        <a routerLink="/cart">Cart</a>
+        <a routerLink="/profile">Profile</a>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📍 Phnom Penh</p>
+        <p>📞 +855 12 345 678</p>
+        <p>✉️ support@eshop.com</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <p>📘 Facebook</p>
+        <p>📸 Instagram</p>
+        <p>🐦 Twitter</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 e-shop. All rights reserved.
+    </div>
+  </footer>
+</div>

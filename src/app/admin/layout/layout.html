@@ -1,0 +1,62 @@
+<div class="admin-wrapper">
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="brand">
+      <span *ngIf="!isCollapsed">Admin Panel</span>
+      <span *ngIf="isCollapsed">AP</span>
+    </div>
+
+    <!-- Catalog -->
+    <div class="menu-group">
+      <p class="group-title" *ngIf="!isCollapsed">Catalog</p>
+      <a routerLink="/admin/products">📦 <span *ngIf="!isCollapsed">Products</span></a>
+      <a routerLink="/admin/variants">🎨 <span *ngIf="!isCollapsed">Variants</span></a>
+      <a routerLink="/admin/categories">📂 <span *ngIf="!isCollapsed">Categories</span></a>
+      <a routerLink="/admin/brands">🏷 <span *ngIf="!isCollapsed">Brands</span></a>
+    </div>
+
+    <!-- Sales -->
+    <div class="menu-group">
+      <p class="group-title" *ngIf="!isCollapsed">Sales</p>
+      <a routerLink="/admin/orders">🧾 <span *ngIf="!isCollapsed">Orders</span></a>
+      <a routerLink="/admin/carts">🛒 <span *ngIf="!isCollapsed">Carts</span></a>
+      <a routerLink="/admin/payments">💳 <span *ngIf="!isCollapsed">Payments</span></a>
+      <a routerLink="/admin/discounts">🔥 <span *ngIf="!isCollapsed">Discounts</span></a>
+    </div>
+
+    <!-- Inventory -->
+    <div class="menu-group">
+      <p class="group-title" *ngIf="!isCollapsed">Inventory</p>
+      <a routerLink="/admin/stock">📊 <span *ngIf="!isCollapsed">Stock</span></a>
+      <a routerLink="/admin/warehouse">🏬 <span *ngIf="!isCollapsed">Warehouse</span></a>
+    </div>
+
+    <!-- Finance -->
+    <div class="menu-group">
+      <p class="group-title" *ngIf="!isCollapsed">Finance</p>
+      <a routerLink="/admin/tax">💰 <span *ngIf="!isCollapsed">Tax</span></a>
+      <a routerLink="/admin/invoice">📄 <span *ngIf="!isCollapsed">Invoice</span></a>
+    </div>
+
+    <!-- System -->
+    <div class="menu-group">
+      <p class="group-title" *ngIf="!isCollapsed">System</p>
+      <a routerLink="/admin/users">👥 <span *ngIf="!isCollapsed">Users</span></a>
+      <a routerLink="/admin/roles">🔐 <span *ngIf="!isCollapsed">Roles</span></a>
+      <a routerLink="/admin/settings">⚙️ <span *ngIf="!isCollapsed">Settings</span></a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <header class="topbar">
+      <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+      <span>Admin Dashboard</span>
+      <button class="logout-btn">Logout</button>
+    </header>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

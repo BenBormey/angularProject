@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.variant-container {
+  padding: 24px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* FORM */
+.form-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.form-box input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  outline: none;
+  min-width: 160px;
+}
+
+.form-box input:focus {
+  border-color: #4f46e5;
+}
+
+/* BUTTONS */
+.form-box button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+}
+
+.form-box button:first-of-type {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+}
+
+.form-box button:first-of-type:hover {
+  opacity: 0.9;
+}
+
+.form-box button:last-of-type {
+  background: #9ca3af;
+}
+
+.form-box button:last-of-type:hover {
+  background: #6b7280;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+  background: #4f46e5;
+  color: white;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* ACTION BUTTONS */
+tbody button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 13px;
+}
+
+tbody button:first-child {
+  background: #3b82f6;
+  margin-right: 6px;
+}
+
+tbody button:first-child:hover {
+  background: #2563eb;
+}
+
+tbody button:last-child {
+  background: #ef4444;
+}
+
+tbody button:last-child:hover {
+  background: #dc2626;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .form-box {
+    flex-direction: column;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}

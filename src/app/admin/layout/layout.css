@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+  transition: 0.3s;
+  overflow-y: auto;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Menu groups */
+.menu-group {
+  margin-bottom: 20px;
+}
+
+.group-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.menu-group a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #cbd5e1;
+  text-decoration: none;
+  margin-bottom: 6px;
+  transition: 0.2s;
+}
+
+.menu-group a:hover {
+  background: #1e293b;
+  color: white;
+}
+
+.menu-group a.active {
+  background: #2563eb;
+  color: white;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Topbar */
+.topbar {
+  height: 60px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.toggle-btn {
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* Content */
+.content {
+  padding: 20px;
+  flex: 1;
+  background: #f9fafb;
+  overflow-y: auto;
+}

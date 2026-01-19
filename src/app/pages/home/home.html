@@ -1,0 +1,42 @@
+<div class="home-container">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Your One-Stop Electronic Market</h1>
+      <p>Welcome to e-shop. Place where you can buy everything about electronics.</p>
+      <button class="btn-primary">Shop Now</button>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div class="hero-image">
+     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvhN5xRKkHsjOYqLhffyLL6x_1EWgZ8qUQPA&s" alt="Laptop">
+
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="feature-card">🚚 Free Shipping</div>
+    <div class="feature-card">🔒 Secure Payment</div>
+    <div class="feature-card">⚡ Fast Delivery</div>
+    <div class="feature-card">💬 24/7 Support</div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="section-header">
+      <h2>Featured Products</h2>
+      <a href="#">View All</a>
+    </div>
+
+<div class="product-card"
+     *ngFor="let p of products"
+     (click)="goToDetails(p.productId)">
+  <img [src]="p.imageUrl" alt="" />
+  <h3>{{ p.productName }}</h3>
+  <p class="price">${{ p.finalPrice }}</p>
+  <button>Add to cart</button>
+</div>
+
+  </section>
+</div>

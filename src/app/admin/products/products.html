@@ -1,0 +1,87 @@
+<div class="page-container">
+  <h2 class="page-title">Add New Product</h2>
+
+  <div class="card">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Product Name</label>
+        <input
+          type="text"
+          [(ngModel)]="product.productName"
+          placeholder="Enter product name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select [(ngModel)]="product.categoryId">
+          <option value="0">-- Select Category --</option>
+          <option *ngFor="let c of categories" [value]="c.categoryId">
+            {{ c.categoryName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label>Description</label>
+        <textarea
+          [(ngModel)]="product.description"
+          placeholder="Enter description"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Base Price</label>
+        <input
+          type="number"
+          [(ngModel)]="product.basePrice"
+          placeholder="Enter price"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select [(ngModel)]="product.isActive">
+          <option [value]="true">Active</option>
+          <option [value]="false">Inactive</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-save" (click)="save()">Save Product</button>
+      <button class="btn-clear" (click)="reset()">Clear</button>
+    </div>
+  </div>
+
+  <h2 class="page-title mt-30">Product List</h2>
+
+  <div class="card">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Status</th>
+          <!-- <th>Image</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products">
+          <td>{{ p.productId }}</td>
+          <td>{{ p.productName }}</td>
+          <td>{{ p.categoryName }}</td>
+          <td>{{ p.basePrice }}</td>
+          <!-- <td>{{ p.basePrice }}</td> -->
+          <td>
+            <span [class.active]="p.isActive" [class.inactive]="!p.isActive">
+              {{ p.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="tax-container">
+  <h2>Tax Management</h2>
+
+  <!-- CREATE FORM -->
+  <div class="form-card">
+    <h3>Create New Tax</h3>
+
+    <div class="form-group">
+      <label>Tax Name</label>
+      <input type="text" [(ngModel)]="newTax.taxName" placeholder="Enter tax name" />
+    </div>
+
+    <div class="form-group">
+      <label>Tax Rate (%)</label>
+      <input type="number" [(ngModel)]="newTax.taxRate" />
+    </div>
+
+    <div class="form-group checkbox">
+      <input type="checkbox" [(ngModel)]="newTax.isActive" />
+      <label>Is Active</label>
+    </div>
+
+    <button class="btn btn-primary" (click)="createTax()">Create</button>
+  </div>
+
+  <!-- EDIT FORM -->
+  <div class="form-card" *ngIf="editTax">
+    <h3>Edit Tax</h3>
+
+    <div class="form-group">
+      <label>Tax Name</label>
+      <input type="text" [(ngModel)]="editTax.taxName" />
+    </div>
+
+    <div class="form-group">
+      <label>Tax Rate (%)</label>
+      <input type="number" [(ngModel)]="editTax.taxRate" />
+    </div>
+
+    <div class="form-group checkbox">
+      <input type="checkbox" [(ngModel)]="editTax.isActive" />
+      <label>Is Active</label>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-success" (click)="updateTax()">Update</button>
+      <button class="btn btn-secondary" (click)="editTax = null">Cancel</button>
+    </div>
+  </div>
+
+  <!-- TAX LIST -->
+  <h3>Tax List</h3>
+
+  <table class="tax-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Rate (%)</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let tax of taxes">
+        <td>{{ tax.taxId }}</td>
+        <td>{{ tax.taxName }}</td>
+        <td>{{ tax.taxRate }}</td>
+        <td>
+          <span [class.active]="tax.isActive" [class.inactive]="!tax.isActive">
+            {{ tax.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-info" (click)="setEdit(tax)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteTax(tax.taxId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

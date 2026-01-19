@@ -1,0 +1,80 @@
+<div class="variant-container">
+  <h2>Product Variants</h2>
+
+  <!-- FORM -->
+  <div class="form-box">
+    <input
+      type="text"
+      placeholder="Variant Name"
+      [(ngModel)]="variant.variantName"
+    />
+
+    <input
+      type="text"
+      placeholder="Color"
+      [(ngModel)]="variant.color"
+    />
+
+    <input
+      type="text"
+      placeholder="Size"
+      [(ngModel)]="variant.size"
+    />
+
+    <input
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="variant.price"
+    />
+
+    <input
+      type="number"
+      placeholder="Stock"
+      [(ngModel)]="variant.stock"
+    />
+
+    <input
+      type="text"
+      placeholder="SKU"
+      [(ngModel)]="variant.sku"
+    />
+
+    <button (click)="saveVariant()">
+      {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+
+    <button *ngIf="isEditMode" (click)="resetForm()">Cancel</button>
+  </div>
+
+  <!-- TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>SKU</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let v of variants; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ v.variantName }}</td>
+        <td>{{ v.color }}</td>
+        <td>{{ v.size }}</td>
+        <td>{{ v.price }}</td>
+        <td>{{ v.stock }}</td>
+        <td>{{ v.sku }}</td>
+        <td>
+          <button (click)="editVariant(v)">Edit</button>
+          <button (click)="deleteVariant(v.productVariantId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

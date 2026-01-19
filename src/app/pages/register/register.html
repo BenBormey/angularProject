@@ -1,0 +1,45 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Create Account</h2>
+    
+    <form (ngSubmit)="onRegister()">
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" name="fullName" [(ngModel)]="registerData.fullName" 
+               placeholder="Enter full name" required />
+      </div>
+
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" name="email" [(ngModel)]="registerData.email" 
+               placeholder="example@mail.com" required />
+      </div>
+
+      <div class="input-group">
+        <label>Phone Number</label>
+        <input type="text" name="phone" [(ngModel)]="registerData.phone" 
+               placeholder="012345678" required />
+      </div>
+
+      <div class="input-group">
+        <label>Branch</label>
+        <select name="branchId" [(ngModel)]="registerData.branchId">
+          <option [value]="1">Phnom Penh Main Branch</option>
+          <option [value]="2">BKSJS Branch</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="registerData.password" 
+               placeholder="••••••••" required />
+      </div>
+
+      <button type="submit" class="register-btn">SIGN UP</button>
+    </form>
+
+    <p class="login-text">Already have an account? 
+      <a routerLink="/login" class="login-link">Login here</a>
+    </p>
+  </div>
+</div>

@@ -11,7 +11,7 @@ export class Product {
 
   // ===================== PRODUCT LIST (1 product = 1 image) =====================
   getProducts() {
-    return this.http.get<any[]>(`${this.apiUrl}/ListProduct`);
+    return this.http.get<any[]>(`${this.apiUrl}`);
   }
 
   // ===================== PRODUCT DETAIL (FULL DETAIL) =====================

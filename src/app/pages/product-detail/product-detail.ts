@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../services/product';
+import { ReviewService } from '../../services/review-service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './product-detail.html',
   styleUrls: ['./product-detail.css'],
 })
@@ -22,15 +24,22 @@ export class ProductDetail implements OnInit {
   discountAmount: number = 0;
   taxAmount: number = 0;
 
+  // ===== REVIEWS =====
+  reviews: any[] = [];
+  averageRating: number = 0;
+  totalReviews: number = 0;
+
   constructor(
     private route: ActivatedRoute,
-    private productService: Product
+    private productService: Product,
+    private reviewService: ReviewService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadDetail(Number(id));
+      this.loadReviews(Number(id));
     }
   }
 
@@ -51,6 +60,23 @@ export class ProductDetail implements OnInit {
     });
   }
 
+  // ========================
+  // REVIEWS
+  // ========================
+  loadReviews(productId: number) {
+    this.reviewService.getByProductId(productId).subscribe(res => {
+      this.reviews = res;
+    });
+
+    this.reviewService.getAverage(productId).subscribe(res => {
+      this.averageRating = res;
+    });
+
+    this.reviewService.getTotal(productId).subscribe(res => {
+      this.totalReviews = res;
+    });
+  }
+
   selectVariant(variant: any) {
     this.selectedVariant = variant;
     this.selectedImage = variant.images?.[0] || '';
@@ -62,7 +88,7 @@ export class ProductDetail implements OnInit {
   }
 
   // ================================
-  // FIXED PRICE LOGIC
+  // PRICE LOGIC
   // ================================
   calculateFinalPrice() {
     if (!this.selectedVariant) return;
@@ -75,7 +101,6 @@ export class ProductDetail implements OnInit {
     const activeTaxes =
       this.product?.taxes?.filter((t: any) => t.isActive) || [];
 
-    // Reset
     this.discountAmount = 0;
     this.taxAmount = 0;
 
@@ -97,7 +122,6 @@ export class ProductDetail implements OnInit {
 
     this.finalPrice = afterDiscount + this.taxAmount;
 
-    // Safety: never show negative price
     if (this.finalPrice < 0) {
       this.finalPrice = 0;
     }

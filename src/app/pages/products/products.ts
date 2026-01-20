@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Product } from '../../services/product';
 
 @Component({
@@ -10,7 +11,7 @@ import { Product } from '../../services/product';
   templateUrl: './products.html',
   styleUrls: ['./products.css'],
 })
-export class Products {
+export class Products implements OnInit {
   products: any[] = [];
   categories: any[] = [];
 
@@ -23,7 +24,12 @@ export class Products {
     createdAt: new Date().toISOString()
   };
 
-  constructor(private productApi: Product) {
+  constructor(
+    private productApi: Product,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
   }
@@ -46,6 +52,31 @@ export class Products {
     });
   }
 
+  // ========== UI HELPERS ==========
+  getFirstImage(p: any): string {
+    if (p.variants?.length > 0) {
+      for (let v of p.variants) {
+        if (v.images && v.images.length > 0) {
+          return v.images[0];
+        }
+      }
+    }
+    return 'https://via.placeholder.com/200';
+  }
+
+  getFirstPrice(p: any): number {
+    if (p.variants?.length > 0) {
+      const validVariant = p.variants.find((v: any) => v.price > 0);
+      if (validVariant) return validVariant.price;
+    }
+    return p.basePrice;
+  }
+
+  goToDetail(id: number) {
+    this.router.navigate(['/products', id]);
+  }
+
+  // ========== ADD PRODUCT ==========
   save() {
     this.productApi.addProduct(this.product).subscribe({
       next: () => {
@@ -69,5 +100,9 @@ export class Products {
       isActive: true,
       createdAt: new Date().toISOString()
     };
+  }
+
+  addToCart(p: any) {
+    console.log('Add to cart:', p);
   }
 }

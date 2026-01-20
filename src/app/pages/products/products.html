@@ -1,13 +1,45 @@
 <h1 class="page-title">Products</h1>
 
 <div class="products">
-  <div class="card" *ngFor="let p of products">
-    <img [src]="p.imageUrl" alt="{{ p.productName }}" />
+  <div 
+    class="card" 
+    *ngFor="let p of products" 
+    (click)="goToDetail(p.productId)"
+  >
+    <img 
+      [src]="getFirstImage(p)"
+    alt="{{ p.productName }}"
+      class="product-img"
+    />
+
 
     <h3>{{ p.productName }}</h3>
 
-    <p class="price">$ {{ p.price }}</p>
+    <p class="price">
+      $ {{ getFirstPrice(p) }}
+    </p>
 
-    <button>Add to Cart</button>
+    <button (click)="addToCart(p); $event.stopPropagation()">
+      Add to Cart
+    </button>
   </div>
 </div>
+
+<hr>
+
+<h2>Add Product</h2>
+
+<form (ngSubmit)="save()" class="add-form">
+  <input type="text" [(ngModel)]="product.productName" name="name" placeholder="Name" required />
+  <input type="text" [(ngModel)]="product.description" name="desc" placeholder="Description" />
+  <input type="number" [(ngModel)]="product.basePrice" name="price" placeholder="Price" />
+  
+  <select [(ngModel)]="product.categoryId" name="category">
+    <option [value]="0">Select Category</option>
+    <option *ngFor="let c of categories" [value]="c.categoryId">
+      {{ c.categoryName }}
+    </option>
+  </select>
+
+  <button type="submit">Save</button>
+</form>

@@ -1,162 +1,177 @@
-/* GLOBAL STYLES */
+/* បង្កើត Variables សម្រាប់ពណ៌ (ជួយឱ្យងាយស្រួលប្តូរតាម Pic 2) */
+:root {
+  --bg-dark: #0f172a;           /* ពណ៌ផ្ទៃក្រោយងងឹត */
+  --card-bg: #1e293b;           /* ពណ៌ប្រអប់ */
+  --accent-blue: #3b82f6;       /* ពណ៌ខៀវភ្លឺ */
+  --accent-purple: #8b5cf6;     /* ពណ៌ស្វាយ */
+  --text-main: #f8fafc;         /* ពណ៌អក្សរស */
+  --text-muted: #94a3b8;       /* ពណ៌អក្សរស្រអាប់ */
+  --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+/* រៀបចំ Layout ទូទៅ */
 .layout-wrapper {
-  font-family: 'Inter', -apple-system, sans-serif;
-  color: #333;
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
   padding: 0 20px;
 }
 
-/* TOP BAR - ស្អាត និង បែប Minimal */
-.top-bar {
-  background-color: #1a202c; /* ពណ៌ខ្មៅបែប Matte */
-  color: #cbd5e0;
-  font-size: 13px;
-  padding: 8px 0;
-}
-
-.top-bar .container {
-  justify-content: space-between;
-}
-
-.top-bar .left span, .top-bar .right span {
-  margin-right: 20px;
-  cursor: pointer;
-}
-
-/* MAIN NAVBAR - ពណ៌ស ថ្លា និងមានស្រមោល */
+/* --- ផ្នែក NAVBAR --- */
 .navbar {
-  background: white;
-  padding: 15px 0;
-  border-bottom: 1px solid #edf2f7;
+  background: rgba(15, 23, 42, 0.9); /* ពណ៌ថ្លាៗបែប Glassmorphism */
+  backdrop-filter: blur(10px);
+  padding: 1.2rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar .container {
+  display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  font-size: 28px;
+  font-size: 1.6rem;
   font-weight: 800;
-  color: #ff6600; /* ពណ៌ Brand */
-  letter-spacing: -1px;
+  cursor: pointer;
+  color: var(--text-main);
+  text-decoration: none;
 }
 
-.search-box {
-  flex: 0 1 500px;
-  margin: 0 40px;
+.logo span {
+  color: var(--accent-blue);
+}
+
+/* ម៉ឺនុយ និង Hover/Active Effect */
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 500;
+  padding: 8px 0;
+  position: relative; /* សម្រាប់ដាក់បន្ទាត់ពីក្រោម */
+  transition: color 0.3s ease;
+}
+
+/* ប្តូរពណ៌ពេល Hover ឬ ពេល Link នោះកំពុង Active */
+.nav-links a:hover, 
+.nav-links a.active {
+  color: var(--text-main);
+}
+
+/* បង្កើតបន្ទាត់អាលុយមីញ៉ូមរត់ពីក្រោម (ដូច Pic 2) */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: var(--gradient);
+  transition: width 0.3s ease;
+}
+
+.nav-links a.active::after,
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .search-box input {
-  width: 100%;
-  padding: 10px 20px;
-  border-radius: 50px;
-  border: 1px solid #e2e8f0;
-  background: #f7fafc;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
   outline: none;
   transition: 0.3s;
 }
 
 .search-box input:focus {
-  border-color: #ff6600;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
 
-.nav-actions {
-  display: flex;
-  gap: 20px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* CATEGORY BAR - ពណ៌ទឹកក្រូច Brand */
-.category-bar {
-  background: #ff6600;
-  padding: 10px 0;
-}
-
-.category-bar .container {
-  gap: 30px;
-}
-
-.category-bar a {
+.btn-logout {
+  background: var(--gradient);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
   color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
   transition: 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 
-.category-bar a:hover {
-  opacity: 0.8;
+.btn-logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 }
 
-.logout {
-  margin-left: auto; /* រុញ Logout ទៅស្តាំបំផុត */
-  cursor: pointer;
+/* --- ផ្នែក Content --- */
+.page-content {
+  flex: 1;
+  padding: 40px 0;
 }
 
-/* FOOTER - រៀបចំជា Grid ឱ្យមានរបៀប */
+/* --- ផ្នែក FOOTER (ជួសជុលឱ្យមើលឃើញអក្សរច្បាស់) --- */
 .footer {
-  background: #1a202c;
-  color: white;
+  background: #070b14; /* ពណ៌ខ្មៅដិត */
   padding: 60px 0 20px;
-  margin-top: 50px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 40px;
-  padding: 0 20px;
-}
-
-.footer-section h3 {
-  color: #ff6600;
-  font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .footer-section h4 {
-  font-size: 18px;
+  color: var(--text-main); /* អក្សរចំណងជើងពណ៌ស */
   margin-bottom: 20px;
-  border-bottom: 2px solid #ff6600;
-  display: inline-block;
-  padding-bottom: 5px;
+  font-size: 1.1rem;
 }
 
-.footer-section p, .footer-section a {
-  display: block;
-  color: #a0aec0;
+.footer-desc {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.footer-section a, 
+.footer-section p {
+  color: var(--text-muted) !important; /* ធានាថាអក្សរចេញពណ៌ប្រផេះស្រាល មិនមែនខ្មៅ */
   text-decoration: none;
   margin-bottom: 12px;
-  transition: 0.3s;
+  display: block;
 }
 
 .footer-section a:hover {
-  color: #ff6600;
+  color: var(--accent-blue) !important;
 }
 
 .footer-bottom {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 50px;
   padding-top: 20px;
-  border-top: 1px solid #2d3748;
-  color: #718096;
-  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }

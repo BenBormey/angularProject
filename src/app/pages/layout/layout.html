@@ -1,59 +1,41 @@
 <div class="layout-wrapper">
-  <div class="top-bar">
-    <div class="container">
-      <div class="left">
-        <span>📍 Phnom Penh</span>
-        <span>📞 +855 12 345 678</span>
-      </div>
-      <div class="right">
-        <span>English</span>
-        <span>USD</span>
-      </div>
-    </div>
-  </div>
-
   <nav class="navbar">
     <div class="container">
-     
-  <button class="logo" routerLink="/home" style="border: none;background: none;cursor: pointer;"> 
-          e-shop.</button>
-      <div class="search-box">
-        <input type="text" placeholder="Search products..." />
+      <div class="logo" routerLink="/home">e-shop<span>.</span></div>
+      
+      <div class="nav-links">
+        <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a routerLink="/products" routerLinkActive="active">Products</a>
+        <a routerLink="/cart" routerLinkActive="active">Cart</a>
+        <a routerLink="/profile" routerLinkActive="active">Profile</a>
       </div>
 
       <div class="nav-actions">
-        <span>❤️</span>
-        <span>🛒</span>
-        <span>👤</span>
+        <div class="search-box">
+          <input type="text" placeholder="Search products..." />
+        </div>
+        <div class="icons">
+          <span class="icon">❤️</span>
+          <span class="icon">🛒</span>
+        </div>
+        <button class="btn-logout" (click)="logout()">Logout</button>
       </div>
     </div>
   </nav>
 
-  <div class="category-bar">
-    <div class="container">
-      <a routerLink="/home">🏠 Home</a>
-      <a routerLink="/products">🛍 Products</a>
-      <a routerLink="/cart">🛒 Cart</a>
-      <a routerLink="/profile">👤 Profile</a>
-      <a (click)="logout()" class="logout">🚪 Logout</a>
-    </div>
-  </div>
-
-  <div class="page-content">
+  <main class="page-content">
     <div class="container">
       <router-outlet></router-outlet>
     </div>
-  </div>
+  </main>
 
   <footer class="footer">
-    <div class="footer-container">
+    <div class="container footer-grid">
       <div class="footer-section">
-           <button>
-              <a routerLink="/home">e-shop.</a></button>
-    
-        <p>Your trusted online shopping platform.</p>
+        <div class="logo">e-shop<span>.</span></div>
+        <p class="footer-desc">Empowering your lifestyle through premium technology and innovative electronics.</p>
       </div>
-
+      
       <div class="footer-section">
         <h4>Quick Links</h4>
         <a routerLink="/home">Home</a>
@@ -64,21 +46,23 @@
 
       <div class="footer-section">
         <h4>Contact</h4>
-        <p>📍 Phnom Penh</p>
+        <p>📍 Phnom Penh, Cambodia</p>
         <p>📞 +855 12 345 678</p>
         <p>✉️ support@eshop.com</p>
       </div>
 
       <div class="footer-section">
         <h4>Follow Us</h4>
-        <p>📘 Facebook</p>
-        <p>📸 Instagram</p>
-        <p>🐦 Twitter</p>
+        <div class="social-links">
+          <a>Facebook</a>
+          <a>Instagram</a>
+          <a>Twitter</a>
+        </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      © 2026 e-shop. All rights reserved.
+      <p>&copy; 2026 e-shop. All rights reserved.</p>
     </div>
   </footer>
 </div>
